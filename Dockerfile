@@ -1,4 +1,6 @@
-FROM menski/nsupdate
+FROM alpine
+
+RUN apk add --no-cache bind-tools
 
 COPY update-ddns /
 
