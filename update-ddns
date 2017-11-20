@@ -2,7 +2,7 @@
 
 set -e
 
-HOST_IP=$(ip -o route get 8.8.8.8 | cut -d\  -f8)
+HOST_IP="${HOST_IP:-$(ip -o route get 8.8.8.8 | cut -d\  -f8)}"
 
 exec nsupdate -k $KEYFILE <<END
 server $DNS_SERVER
