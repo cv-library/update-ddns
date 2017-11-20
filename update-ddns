@@ -2,7 +2,9 @@
 
 set -e
 
-HOST_IP="${HOST_IP:-$(ip -o route get 8.8.8.8 | cut -d\  -f8)}"
+# use www.cv-library.co.uk to ensure we go through
+# the VPN if the VPN is used.
+HOST_IP="${HOST_IP:-$(ip -o route get 109.169.5.15 | cut -d\  -f8)}"
 
 exec nsupdate -k $KEYFILE <<END
 server $DNS_SERVER
