@@ -2,9 +2,11 @@
 
 set -e
 
-# use www.cv-library.co.uk to ensure we go through
-# the VPN if the VPN is used.
-HOST_IP="${HOST_IP:-$(ip -o route get 109.169.5.15 | cut -d\  -f8)}"
+# override EXTERNAL_IP if you want to use a different
+# route through your network.  Generally useful if you're
+# using something like a VPN.
+EXTERNAL_IP="${EXTERNAL_IP:-8.8.8.8}"
+HOST_IP="${HOST_IP:-$(ip -o route get $EXTERNAL_IP | cut -d\  -f8)}"
 
 exec nsupdate -k $KEYFILE <<END
 server $DNS_SERVER
