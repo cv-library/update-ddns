@@ -6,7 +6,7 @@ set -e
 # route through your network.  Generally useful if you're
 # using something like a VPN.
 EXTERNAL_IP="${EXTERNAL_IP:-8.8.8.8}"
-HOST_IP="${HOST_IP:-$(ip -o route get $EXTERNAL_IP | cut -d\  -f8)}"
+HOST_IP="${HOST_IP:-$(ip -o route get $EXTERNAL_IP | sed 's/.*src //;s/ .*//')}"
 
 exec nsupdate -k $KEYFILE <<END
 server $DNS_SERVER
